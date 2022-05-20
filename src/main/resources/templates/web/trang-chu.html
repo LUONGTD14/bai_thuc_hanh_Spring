@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/font/fontawesome/css/all.css}" rel="stylesheet" />
+    <link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/owl.theme.default.min.css}" rel="stylesheet" />
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/base.css}" rel="stylesheet" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" />
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" />
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+</head>
+<body class="common-home">
+
+<header th:replace="fragment::header"></header>
+
+<section class="bread_crumb py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="trang-chu.html"><span ><i class="fa fa-home"></i>My hotel</span></a>
+                        <span><i class="fa fa-angle-right"></i></span>
+                    </li>
+                    <li>
+                        <a th:href="@{/trang-chu}">
+                            <strong >Home page</strong>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Carousel Section -->
+<section class="awe-section-1" id="awe-section-1">
+    <div class="section-category-slider mt-md-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 px-2 mb-5">
+                    <div class="home-slider owl-carousel" id="gallery-0" data-margin="0" data-nav="true" data-lg-items="1" data-md-items="1" data-sm-items="1" data-xs-items="1" data-autoplay="true">
+                        <div class="item">
+                            <a href="#" class="clearfix">
+                                <img th:src="@{/image/Slide/slide-1.jpg}" alt="owl-banner-1" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#" class="clearfix">
+                                <img th:src="@{/image/slide/slide-2.jpg}" alt="owl-baner-2" />
+                            </a>
+                        </div>
+                        <div class="item">
+                            <a href="#" class="clearfix">
+                                <img th:src="@{/image/slide/slide-3.jpg}" alt="owl-baner-2" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Check availability form -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="main w-100" id="content">
+            <section class="awe-section-2" id="service-gallery-1">
+                <div class="container">
+                    <div class="section-check-availability p-4">
+                        <h2>Check availability</h2>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Check-in date</h4>
+                                <input type="date" value="" placeholder="dd/mm/yyyy" name="check-in-date" id="check-in-date" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Check-out date</h4>
+                                <input type="date" value="" placeholder="dd/mm/yyyy" name="check-out-date" id="check-out-date" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Room type</h4>
+                                <select name="room-type" class="form-control form-control-lg">
+                                    <option th:each="i:${roomTypeList}" th:value="${i.id}">[[${i.roomTypeName}]]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Price</h4>
+                                <input type="number" value="" placeholder="Price" name="price" id="check-in-price" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                <a style="display: inline-block;
+                                             width: 50%; height: fit-content;
+                                             border-radius: 10px; padding: 10px 0; margin-top: 40px"
+                                   class="btn- btn-primary text-center font-weight-bold" onclick="searchRoom()">
+                                    Check availability
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<!-- News Section -->
+<section class="awe-section-10 news-module news-custom" id="news-custom-0">
+    <div class="section section-blog">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>
+                    <a href="javascript:void(0)">Tin tức</a>
+                </h2>
+                <p></p>
+            </div>
+            <div class="section-content">
+                <div class="blog-slider owl-carousel" data-nav="true" data-lg-items="3" data-md-items="3" data-sm-items="2" data-xs-items="2">
+                    <article class="blog-item text-center">
+                        <div>
+                            <div class="blog-item-thumbnail">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/slide/slide-2.jpg}" alt="Tại sao Cherry tại Việt Nam lại có giá thành cao hơn rất nhiều các loại trái cây nhập khẩu" />
+                                </a>
+                            </div>
+                            <div class="blog-item-info m-4">
+                                <h3 class="blog-item-name">
+                                    <a href="javascript:void(0)">
+                                        <span>Tại sao bận nên đặt phòng tại My hotel ?</span>
+                                    </a>
+                                </h3>
+                                <meta content="05/09/2018" />
+                                <p class="blog-item-summary">Cherry là sản phẩm có giá thành khá đắt nhưng lại là lựa chọn hàng đầu của nhiều người Việt Nam khi đem đi biếu tặng và sử dụng trong gia đình. Đa số&#8230;</p>
+                                <a class="btn" href="javascript:void(0)">Xem thêm</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="blog-item text-center">
+                        <div>
+                            <div class="blog-item-thumbnail">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/Slide/slide-1.jpg}" alt="Nhập khẩu rau quả vượt mốc 1 tỷ USD, Thái Lan chiếm 60% thị phần" />
+                                </a>
+                            </div>
+                            <div class="blog-item-info m-4">
+                                <h3 class="blog-item-name">
+                                    <a href="javascript:void(0)">
+                                        <span>My hotel cung cấp những loại phòng nào ?</span>
+                                    </a>
+                                </h3>
+                                <meta content="04/09/2018" />
+                                <p class="blog-item-summary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <a class="btn" href="javascript:void(0)">Xem thêm</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="blog-item text-center">
+                        <div>
+                            <div class="blog-item-thumbnail">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/slide/slide-2.jpg}" />
+                                </a>
+                            </div>
+                            <div class="blog-item-info m-4">
+                                <h3 class="blog-item-name">
+                                    <a href="javascript:void(0)">
+                                        <span>My hotel bao gồm những dịch vụ nào ?</span>
+                                    </a>
+                                </h3>
+                                <meta content="02/06/2017" />
+                                <p class="blog-item-summary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <a class="btn" href="javascript:void(0)">Xem thêm</a>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="blog-item text-center">
+                        <div>
+                            <div class="blog-item-thumbnail">
+                                <a href="javascript:void(0)">
+                                    <img th:src="@{/image/slide/slide-3.jpg}" />
+                                </a>
+                            </div>
+                            <div class="blog-item-info m-4">
+                                <h3 class="blog-item-name">
+                                    <a href="javascript:void(0)">
+                                        <span>Địa chỉ My hotel ở đâu ?</span>
+                                    </a>
+                                </h3>
+                                <meta content="13/04/2017" />
+                                <p class="blog-item-summary">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+                                <a class="btn" href="javascript:void(0)">Xem thêm</a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feedback Section -->
+<section class="awe-section-11 feedback" id="feedback-0">
+    <div class="section section_testimonial">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>
+                    <a href="javascript:void(0)">Phản hồi của khách hàng</a>
+                </h2>
+                <p>Phản hồi của những khách hàng trong suốt những năm qua</p>
+            </div>
+            <div class="section-content">
+                <div class="testimonial-slider owl-carousel" data-nav="true" data-lg-items="3" data-md-items="3" data-sm-items="2" data-xs-items="2">
+                    <div class="testimonial-item text-center p-4 mb-5">
+                        <div class="image-avata">
+                            <img th:src="@{/image/feedback/kh4-250x250.png}" alt="Mr. Thành">
+                        </div>
+                        <h4 class="name">Mr. Thành</h4>
+                        <div class="designation m-0">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+                    </div>
+                    <div class="testimonial-item text-center p-4 mb-5">
+                        <div class="image-avata">
+                            <img th:src="@{/image/feedback/kh5-250x250.jpg}" alt="Thu Phương">
+                        </div>
+                        <h4 class="name">Mrs. Thu Phương</h4>
+                        <div class="designation m-0">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</div>
+                    </div>
+                    <div class="testimonial-item text-center p-4 mb-5">
+                        <div class="image-avata">
+                            <img th:src="@{/image/feedback/kh2-250x250.jpg}" alt="Hoàng Yến">
+                        </div>
+                        <h4 class="name">Mrs. Hoàng Yến</h4>
+                        <div class="designation m-0">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section th:replace="fragment::footer-nav"></section>
+
+<footer th:replace="fragment::footer"></footer>
+
+<script type="text/javascript" th:src="@{/js/owl.carousel.min.js}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/all.js}"></script>
+<script type="text/javascript" th:src="@{/js/index.js}"></script>
+<script>
+    function searchRoom(){
+        let checkInDate = $("input[name = 'check-in-date']").val();
+        let checkOutDate = $("input[name = 'check-out-date']").val();
+        let price = $("input[name = 'price']").val();
+        let roomTypeId = $("select[name = 'room-type']").val();
+
+        if (new Date(checkOutDate) < new Date(checkInDate)){
+            $('.alert').remove();
+            $('.breadcrumb').after('<div class="mt-3 alert alert-danger"><strong>Vui lòng kiểm tra lại ngày check-in và check-out !</strong></div>');
+            $('html, body').animate({scrollTop: 0}, 'slow');
+        }else{
+            window.location = "/hotel-demo/room?price="+price+"&roomTypeId="+roomTypeId+"&checkInDate="+checkInDate+"&checkOutDate="+checkOutDate
+        }
+    }
+</script>
+</body>
+</html>

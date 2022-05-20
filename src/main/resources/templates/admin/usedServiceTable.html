@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="usedServiceTable" style="background-color: #ededf1; padding: 10px 20px 10px 20px; border-radius: 10px; border: 1px solid lightgray; box-shadow: 3px -5px lightgray">
+    <h4 th:if="${usedServiceList.size == 0 && bookingForm != null}" style="text-align: center">[[${bookingForm.room.roomName}]] has no service</h4>
+    <table th:if="${usedServiceList.size > 0}" class="table table-hover">
+    <thead>
+    <h4 class="text-center">Service room [[${bookingForm.room.roomName}]]</h4>
+    <tr>
+        <td class="text-center"><strong>Service</strong></td>
+        <td class="text-center"><strong>Price</strong></td>
+        <td class="text-center"><strong>Quantity</strong></td>
+        <td class="text-center"><strong>Total price</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+        <tr th:each="usedService : ${usedServiceList}">
+            <td class="text-center">[[${usedService.service.serviceName}]]</td>
+            <td class="text-center">[[${usedService.service.price}]] $</td>
+            <td class="text-center">[[${usedService.quantity}]]</td>
+            <td class="text-center">[[${usedService.quantity * usedService.service.price}]] $</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
