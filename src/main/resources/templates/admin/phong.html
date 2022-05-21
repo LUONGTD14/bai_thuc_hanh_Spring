@@ -38,7 +38,6 @@
                                     <a style="color: darkblue" th:href="@{/admin/room}">
                                         <strong >Room</strong>
                                     </a>
-                                    <span><i class="fa fa-angle-right"></i></span>
                                 </li>
                             </ul>
                         </div>
@@ -47,7 +46,7 @@
             </section>
             <!-- Content -->
             <div class="ml-3 mr-3 table-responsive table-cart-content">
-                <table id="room-table" class="table table-bordered">
+                <table id="room-table" class="table table-hover">
                     <thead>
                     <tr>
                         <td class="text-center"><strong>Id</strong></td>
@@ -65,7 +64,9 @@
                                [[${room.roomId}]]
                             </td>
                             <td>
-                                [[${room.roomName}]]
+                                <a style="color: #0b2e13" th:href="@{'/admin/selected-room-booking/'+ ${room.roomId}}">
+                                    [[${room.roomName}]]
+                                </a>
                             </td>
                             <td>
                                 <img style="width: 100px; height: fit-content" th:src="${room.roomImg}" th:title="${room.roomName}" th:alt="${room.roomName}" />

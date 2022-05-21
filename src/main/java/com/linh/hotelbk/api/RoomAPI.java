@@ -14,6 +14,7 @@ import com.linh.hotelbk.service.IRoomTypeService;
 import com.linh.hotelbk.service.IUserService;
 import com.linh.hotelbk.service.impl.SendMailService;
 import com.linh.hotelbk.utils.UploadFileUtils;
+import com.linh.hotelbk.utils.enums.RoomStatus;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
@@ -139,6 +140,10 @@ public class RoomAPI {
             Date checkOutDate = simpleDateFormat.parse(request.getCheckOutDate());
 
             RoomEntity bookedRoom = roomService.findById(request.getRoomId());
+            if (checkInDate.before(bookedRoom.getAvailableFrom())){
+                result.put("error", "Phòng "+bookedRoom.getRoomName()+" hiện tại đang được đặt");
+                return result;
+            }
             // Get Current User
             UserEntity customer =  userService.getCurrentLoginUser();
             // Compute Booking Days
@@ -157,6 +162,13 @@ public class RoomAPI {
                     .updateAt(new Date())
                     .build();
             bookingForm = bookingFormService.save(bookingForm);
+            bookedRoom.setStatus(false);
+            // Reset Available for booked Room
+            Calendar c = Calendar.getInstance();
+            c.setTime(checkOutDate);
+            c.add(Calendar.DATE, 1);
+            bookedRoom.setAvailableFrom(c.getTime());
+            roomService.save(bookedRoom);
 
             EmailBookingDTO emailBookingDTO = EmailBookingDTO.builder()
                             .from(mailFrom).to(bookingForm.getCustomerEmail())

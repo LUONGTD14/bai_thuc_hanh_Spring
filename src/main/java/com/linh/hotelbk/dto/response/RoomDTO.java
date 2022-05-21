@@ -1,5 +1,6 @@
 package com.linh.hotelbk.dto.response;
 
+import com.linh.hotelbk.utils.enums.RoomStatus;
 import lombok.*;
 
 @AllArgsConstructor
@@ -13,6 +14,6 @@ public class RoomDTO {
     private String roomName;
     private String roomImg;
     private String price;
-    private Boolean status;
+    private String status;
     private String availableFrom;
 }

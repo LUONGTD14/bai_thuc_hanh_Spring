@@ -3,6 +3,7 @@ package com.linh.hotelbk.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.linh.hotelbk.utils.CustomDateSerializer;
+import com.linh.hotelbk.utils.enums.RoomStatus;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,8 +32,12 @@ public class RoomEntity {
     @Column(name = "Price", nullable = false)
     private Integer price;
 
-    @Column(name = "Status")
+    @Column(name = "Status", nullable = false)
     private Boolean status;
+
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "Status", nullable = false)
+//    private RoomStatus status;
 
     @Column(name = "AvailableFrom", nullable = false)
     private Date availableFrom;

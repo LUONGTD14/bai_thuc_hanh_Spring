@@ -4,6 +4,7 @@ import com.linh.hotelbk.dto.request.RegistryRequest;
 import com.linh.hotelbk.dto.response.RoomDTO;
 import com.linh.hotelbk.entity.RoomEntity;
 import com.linh.hotelbk.entity.UserEntity;
+import com.linh.hotelbk.utils.enums.RoomStatus;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class Mapper {
                 .roomName(room.getRoomName())
                 .roomImg(room.getImagePath())
                 .price(room.getCurrency())
-                .status(room.getStatus())
+                .status(room.getAvailableFrom().before(new Date()) ? "AVAILABLE" : "RESERVED")
                 .availableFrom(new SimpleDateFormat("yyyy-MM-dd").format(room.getAvailableFrom()))
                 .build();
 
