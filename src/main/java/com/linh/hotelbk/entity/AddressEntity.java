@@ -1,6 +1,5 @@
 package com.linh.hotelbk.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.linh.hotelbk.utils.CustomDateSerializer;
 import lombok.*;

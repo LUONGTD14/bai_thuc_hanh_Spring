@@ -61,4 +61,19 @@ public class UserService implements IUserService {
     public UserEntity getCurrentLoginUser() {
         return ((UserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
     }
+
+    @Override
+    public UserEntity findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public UserEntity findByToken(String token) {
+        return userRepository.findByResetPassToken(token);
+    }
+
+    @Override
+    public void update(UserEntity user) {
+        userRepository.saveAndFlush(user);
+    }
 }

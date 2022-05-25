@@ -1,30 +1,34 @@
 package com.linh.hotelbk.controller.web;
 
 import com.linh.hotelbk.dto.request.RegistryRequest;
+import com.linh.hotelbk.dto.request.ResetPasswordRequest;
 import com.linh.hotelbk.entity.UserEntity;
 import com.linh.hotelbk.service.ICountryService;
 import com.linh.hotelbk.service.IUserService;
 import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 @AllArgsConstructor
 @Slf4j
 @Api(tags = "Controller")
-public class RegistryController {
+public class UserController {
 
-    private final ModelMapper modelMapper;
     private final IUserService userService;
     private final ICountryService countryService;
+
+    @GetMapping(path = "/login")
+    public ModelAndView getLoginPage(){
+        ModelAndView mv = new ModelAndView("web/dang-nhap");
+        return mv;
+    }
 
     @GetMapping(path = "/registry")
     public ModelAndView getRegistryPage(){
@@ -55,6 +59,19 @@ public class RegistryController {
                 e.printStackTrace();
             }
         }
+        return mv;
+    }
+
+    @GetMapping(path = "/forget-password")
+    public ModelAndView getForgetPassPage(){
+        ModelAndView mv = new ModelAndView("web/forgetPass");
+        return mv;
+    }
+
+    @GetMapping(path = "/change-password/{token}")
+    public ModelAndView getChangePassPage(@PathVariable String token){
+        ModelAndView mv = new ModelAndView("web/changePass");
+        mv.addObject("token", token);
         return mv;
     }
 }

@@ -45,7 +45,7 @@
                 <div class="clearfix"></div>
                 <div class="col-sm-12 col-md-6">
                     <div class="well">
-                        <h2>Khách hàng mới</h2>
+                        <h2>Khách đặt phòng mới</h2>
                         <p><strong>Đăng kí</strong></p>
                         <p>
                             Bằng việc tạo tài khoản bạn có thể đặt phòng nhanh hơn và
@@ -57,7 +57,7 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="well">
                         <h2>Khách hàng cũ</h2>
-                        <p><strong>Tôi là khách hàng cũ</strong></p>
+                        <p><strong>Tôi là khách cũ</strong></p>
                         <form th:action="@{/signin}" method="POST">
                             <div th:if="${param.error}" class="alert alert-danger">
                                 Email hoặc password không đúng
@@ -73,7 +73,7 @@
                                     Mật khẩu
                                 </label>
                                 <input type="password" name="password" id="input-password" placeholder="Mật khẩu" class="form-control"/>
-                                <a href="#">Quên mật khẩu</a>
+                                <a th:href="@{/forget-password}">Quên mật khẩu</a>
                             </div>
                             <div class="method">
                                 <div class="method-control mb-3">

@@ -59,6 +59,9 @@ public class UserEntity {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private AddressEntity address;
 
+    @Column(name = "ResetPassToken")
+    private String resetPassToken;
+
     @JsonSerialize(using = CustomDateSerializer.class)
     @Column(name = "CreateAt", nullable = false)
     private Date createAt;

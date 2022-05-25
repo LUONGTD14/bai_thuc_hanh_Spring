@@ -185,7 +185,6 @@ public class RoomAPI {
                     .roomPrice(bookedRoom.getCurrency())
                     .totalPrice(bookingDays * bookedRoom.getPrice()+" $")
                     .build();
-            System.out.println(contentEmail.toString());
             // Send mail
             mailService.sendBookingMail(emailBookingDTO, contentEmail, bookingForm.getId());
 
