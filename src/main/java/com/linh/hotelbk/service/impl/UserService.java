@@ -76,4 +76,9 @@ public class UserService implements IUserService {
     public void update(UserEntity user) {
         userRepository.saveAndFlush(user);
     }
+
+    @Override
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id).get();
+    }
 }

@@ -10,4 +10,5 @@ public interface IUserService {
     UserEntity findByEmail(String email);
     UserEntity findByToken(String token);
     void update(UserEntity user);
+    UserEntity findById(Long id);
 }

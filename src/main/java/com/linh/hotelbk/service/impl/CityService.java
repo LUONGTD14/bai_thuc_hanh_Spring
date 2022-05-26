@@ -19,4 +19,9 @@ public class CityService implements ICityService {
     public List<CityEntity> findByCountry(CountryEntity country) {
         return cityRepository.findByCountry(country);
     }
+
+    @Override
+    public CityEntity findById(Long id) {
+        return cityRepository.findById(id).get();
+    }
 }

@@ -1,8 +1,11 @@
 package com.linh.hotelbk.api;
 
 import com.linh.hotelbk.dto.request.ChangPasswordRequest;
+import com.linh.hotelbk.dto.request.ChangeCurrentPasswordRequest;
+import com.linh.hotelbk.dto.request.ChangeProfileRequest;
 import com.linh.hotelbk.dto.request.ResetPasswordRequest;
 import com.linh.hotelbk.dto.response.EmailBookingDTO;
+import com.linh.hotelbk.entity.AddressEntity;
 import com.linh.hotelbk.entity.UserEntity;
 import com.linh.hotelbk.service.IUserService;
 import com.linh.hotelbk.service.impl.SendMailService;
@@ -66,6 +69,52 @@ public class UserAPI {
             String newPassword = passwordEncoder.encode(request.getNewPassword());
             user.setPassword(newPassword);
             userService.update(user);
+            res.put("success", "success");
+            return res;
+        }catch (Exception e){
+            log.error(e.getLocalizedMessage());
+            res.put("error", "error");
+            return res;
+        }
+    }
+
+    @PutMapping(path = "/api/change-profile")
+    public Map<String, String> changePròile(@RequestBody ChangeProfileRequest request){
+        Map<String, String> res = new LinkedHashMap<>();
+        try{
+            UserEntity currentUser = userService.findById(request.getId());
+            currentUser.setFullName(request.getFullName());
+            currentUser.setEmail(request.getEmail());
+            currentUser.setPhoneNumber(request.getPhone());
+
+            AddressEntity oldAddress = currentUser.getAddress();
+            oldAddress.setCityId(request.getCityId());
+            oldAddress.setCountryId(request.getCountryId());
+            oldAddress.setFullAddress(request.getAddress());
+
+            currentUser.setAddress(oldAddress);
+            userService.update(currentUser);
+
+            res.put("success", "success");
+            return res;
+        }catch (Exception e){
+            log.error(e.getLocalizedMessage());
+            res.put("error", "error");
+            return res;
+        }
+    }
+
+    @PutMapping(path = "/api/change-current-password")
+    public Map<String, String> changeCurrentPassword(@RequestBody ChangeCurrentPasswordRequest request){
+        Map<String, String> res = new LinkedHashMap<>();
+        try{
+            UserEntity currentUser = userService.findById(request.getId());
+            if (!passwordEncoder.matches(request.getOldPassword(), currentUser.getPassword())){
+                res.put("error", "error");
+                return res;
+            }
+            currentUser.setPassword(passwordEncoder.encode(request.getNewPassword()));
+            userService.update(currentUser);
             res.put("success", "success");
             return res;
         }catch (Exception e){

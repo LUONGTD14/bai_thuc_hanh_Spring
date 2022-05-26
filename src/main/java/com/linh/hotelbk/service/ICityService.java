@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ICityService {
     List<CityEntity> findByCountry(CountryEntity country);
+    CityEntity findById(Long id);
 }
