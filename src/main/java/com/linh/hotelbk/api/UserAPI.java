@@ -6,6 +6,7 @@ import com.linh.hotelbk.dto.request.ChangeProfileRequest;
 import com.linh.hotelbk.dto.request.ResetPasswordRequest;
 import com.linh.hotelbk.dto.response.EmailBookingDTO;
 import com.linh.hotelbk.entity.AddressEntity;
+import com.linh.hotelbk.entity.RoleEntity;
 import com.linh.hotelbk.entity.UserEntity;
 import com.linh.hotelbk.service.IUserService;
 import com.linh.hotelbk.service.impl.SendMailService;
@@ -14,12 +15,16 @@ import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @Api(tags = "API")
@@ -122,5 +127,29 @@ public class UserAPI {
             res.put("error", "error");
             return res;
         }
+    }
+
+    @GetMapping(path = "/api/user/getAll")
+    public List<Map<String, String>> getAllUserInfo(){
+        List<Map<String, String>> res = new ArrayList<>();
+        List<UserEntity> userList = userService.findAll();
+        for (UserEntity user : userList){
+            Map<String, String> map = new LinkedHashMap<>();
+            map.put("id", user.getId()+"");
+            map.put("fullName", user.getFullName());
+            map.put("email", user.getEmail());
+            map.put("phoneNumber", user.getPhoneNumber());
+            map.put("gender", user.getGender());
+            map.put("age", user.getAge()+"");
+            String role = "";
+            for (RoleEntity r : user.getRoles()){
+                role+= r.getRoleName()+" ";
+            }
+            System.out.println(role);
+            map.put("role", role);
+            map.put("status", user.getIsActive()+"");
+            res.add(map);
+        }
+        return res;
     }
 }

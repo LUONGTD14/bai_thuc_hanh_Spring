@@ -26,7 +26,42 @@
             <!-- End Navbar -->
 
             <!-- Content -->
+            <section>
+                <section class="page mb-4">
+                    <div class="container">
+                        <div class="row">
+                            <div class="clearfix"></div>
+                            <div class="col-sm-12">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h3 class="mt-3 mb-4">User information</h3>
+                                    <button class="btn btn-primary" data-toggle="tooltip" title data-original-title="Refesh" onclick="loadUserInfo()">Refresh</button>
+                                </div>
+                                <div class="table-responsive table-cart-content">
+                                    <table id="user-table" class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <td class="text-center"><strong>Id</strong></td>
+                                            <td class="text-center"><strong> Full name</strong></td>
+                                            <td class="text-center"><strong>Email</strong></td>
+                                            <td class="text-center"><strong>Phone number</strong></td>
+                                            <td class="text-center"><strong>Gender</strong></td>
+                                            <td class="text-center"><strong>Age</strong></td>
+                                            <td class="text-center"><strong>Role</strong></td>
+                                            <td class="text-center"><strong>Status</strong></td>
+                                            <td>Action</td>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
 
+                                        </tbody>
+                                    </table>
+                                    <div class="row mt-3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
             <!--End Content -->
 
             <footer th:replace="fragment-admin::footer"></footer>
@@ -53,8 +88,59 @@
           // Javascript method's body can be found in assets/js/demos.js
           demo.initDashboardPageCharts();
           demo.showNotification();
+          loadUserInfo();
           }
       );
+
+      function loadUserInfo(){
+          $.ajax({
+              url: '/hotel-demo/api/user/getAll',
+              type: 'get',
+              datatype: 'json',
+              success: function(json){
+                  let table = '';
+                  for(let i = 0;i<json.length; i++){
+                      var html =
+                          '<tr booking-id="'+json[i]['id']+'">'+
+                          '<td class="text-center">'+json[i]['id']+'</td>'+
+                          '<td class="text-center">'+json[i]['fullName']+'</td>'+
+                          '<td class="text-center">'+json[i]['email']+'</td>'+
+                          '<td class="text-center">'+ json[i]['phoneNumber']+'</td>'+
+                          '<td class="text-center">'+json[i]['gender']+'</td>'+
+                          '<td class="text-center">'+json[i]['age']+'</td>'+
+                          '<td class="text-center">'+json[i]['role']+'</td>'+
+                          '<td class="text-center">'+json[i]['status']+'</td>'+
+                          '<td class="d-flex align-items-center justify-content-between">'+
+                          '<a onclick="redirect()" class="btn btn-primary">View</a>'+
+                          '<a class="btn btn-danger" onclick="deleteUser('+json[i]['id']+')">Delete</a>'+
+                          '</td>'+
+                          '</tr>';
+                      table+=html;
+                  }
+                  $('#user-table tbody').html(table);
+                  //Đoạn code này đặt sau đoạn load dữ liệu lên table
+                  //để gắn bộ xử lí sự kiện vào button có class là update-btn
+                  //mới đc tạo ra
+                  $('button.btn.btn-primary.update-btn').on("click", function(){
+                      let checkIn = $(this).parent().parent().find('input[check-in="1"]').val();
+                      let checkOut = $(this).parent().parent().find('input[check-out="1"]').val();
+                      id = $(this).attr('booking-id');
+                      updateBooking(id, checkIn, checkOut);
+                  });
+              },
+              error: function(){
+                  alert("Không load đơn hàng thành công !");
+              }
+          });
+      }
+
+      function deleteUser(id){
+
+      }
+
+      function redirect(){
+          window.location = "/hotel-demo/profile";
+      }
    </script>
 </body>
 </html>
