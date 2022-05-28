@@ -34,6 +34,8 @@
       - Tìm kiếm danh sách các phòng theo giá phòng, loại phòng, ngày check-in và check-out.
       - Sắp xếp danh sách phòng theo tên (A-Z hoặc Z-A) và giá (cao -thấp hoặc thấp -cao).
    + Nguyễn Tiến Đại - B19DCCN161:
+      - Xem chi tiết phòng muốn đặt và đặt phòng.
+      - Chỉnh sửa thông tin ngày check-in và check-out của phòng mình vừa đặt.
       - Xem thông tin danh sách các phòng hiện đang có của khách sạn.
       - Chỉnh sửa thông tin, xóa hoặc thêm mới phòng cho khách sạn.
       - Đặt phòng trực tiếp cho khách.
