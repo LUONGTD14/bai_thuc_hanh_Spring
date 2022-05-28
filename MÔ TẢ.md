@@ -27,7 +27,7 @@
      + Xuất file PDF hóa đơn cho khách đặt phòng.
 
 3, Đóng góp của các thành viên trong nhóm:
-   + Nguyễn Hoài Linh - B19DCCN375 (Nhóm trưởng) :
+   + Nguyễn Hoài Linh - B19DCCN375 (Nhóm trưởng) : abc
    + Lê Ngọc Phương - B19DCCN509:
    + Nguyễn Tiến Đại - B19DCCN161:
 
