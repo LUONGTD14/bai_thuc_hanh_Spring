@@ -27,12 +27,25 @@
      + Xuất file PDF hóa đơn cho khách đặt phòng.
 
 3, Đóng góp của các thành viên trong nhóm:
-   + Nguyễn Hoài Linh - B19DCCN375 (Nhóm trưởng) : abc
+   + Nguyễn Hoài Linh - B19DCCN375 (Nhóm trưởng) :
+      + Thiết kế và code giao diện.
+      + Thiết kế database.
+      + Đăng nhập vào hệ thống và được điều hướng trực tiếp đến trang admin của hệ thống.
+      + Chỉnh sửa thông tin tài khoản của mình và cập nhật mật khẩu nếu cần.
+      + Xem thông tin danh sách các phòng hiện đang có của khách sạn.
+      + Chỉnh sửa thông tin, xóa hoặc thêm mới phòng cho khách sạn.
+      + Đặt phòng trực tiếp cho khách.
+      + Xem, chỉnh sửa thông tin hoặc xóa các tài khoản người dùng của khách hàng.
+      + Thêm các dịch vụ cho các phòng đang được đặt.
+      + Xem danh sách khách và phòng đang được đặt.
+      + Xuất file PDF hóa đơn cho khách đặt phòng.
+      
    + Lê Ngọc Phương - B19DCCN509:
       - Đăng kí tài khoản người dùng và đăng nhập vào hệ thống.
       - Thay đổi thông tin tài khoản của mình và thay đổi mật khẩu mới nếu cần thiết.
       - Tìm kiếm danh sách các phòng theo giá phòng, loại phòng, ngày check-in và check-out.
       - Sắp xếp danh sách phòng theo tên (A-Z hoặc Z-A) và giá (cao -thấp hoặc thấp -cao).
+     
    + Nguyễn Tiến Đại - B19DCCN161:
       - Xem chi tiết phòng muốn đặt và đặt phòng.
       - Chỉnh sửa thông tin ngày check-in và check-out của phòng mình vừa đặt.
