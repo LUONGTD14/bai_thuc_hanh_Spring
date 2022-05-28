@@ -29,7 +29,14 @@
 3, Đóng góp của các thành viên trong nhóm:
    + Nguyễn Hoài Linh - B19DCCN375 (Nhóm trưởng) : abc
    + Lê Ngọc Phương - B19DCCN509:
+      - Đăng kí tài khoản người dùng và đăng nhập vào hệ thống.
+      - Thay đổi thông tin tài khoản của mình và thay đổi mật khẩu mới nếu cần thiết.
+      - Tìm kiếm danh sách các phòng theo giá phòng, loại phòng, ngày check-in và check-out.
+      - Sắp xếp danh sách phòng theo tên (A-Z hoặc Z-A) và giá (cao -thấp hoặc thấp -cao).
    + Nguyễn Tiến Đại - B19DCCN161:
+      - Xem thông tin danh sách các phòng hiện đang có của khách sạn.
+      - Chỉnh sửa thông tin, xóa hoặc thêm mới phòng cho khách sạn.
+      - Đặt phòng trực tiếp cho khách.
 
 4, Các màn hình Demo ứng dụng hotelBK:
    - Phía khách đặt phòng: 
