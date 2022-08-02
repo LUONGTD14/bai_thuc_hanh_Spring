@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -75,5 +76,15 @@ public class UserService implements IUserService {
     @Override
     public void update(UserEntity user) {
         userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
+    public List<UserEntity> findAll() {
+        return userRepository.findAll();
     }
 }

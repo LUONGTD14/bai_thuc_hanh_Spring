@@ -2,7 +2,9 @@ package com.linh.hotelbk.controller.web;
 
 import com.linh.hotelbk.dto.request.RegistryRequest;
 import com.linh.hotelbk.dto.request.ResetPasswordRequest;
+import com.linh.hotelbk.entity.CityEntity;
 import com.linh.hotelbk.entity.UserEntity;
+import com.linh.hotelbk.service.ICityService;
 import com.linh.hotelbk.service.ICountryService;
 import com.linh.hotelbk.service.IUserService;
 import io.swagger.annotations.Api;
@@ -23,6 +25,7 @@ public class UserController {
 
     private final IUserService userService;
     private final ICountryService countryService;
+    private final ICityService cityService;
 
     @GetMapping(path = "/login")
     public ModelAndView getLoginPage(){
@@ -72,6 +75,25 @@ public class UserController {
     public ModelAndView getChangePassPage(@PathVariable String token){
         ModelAndView mv = new ModelAndView("web/changePass");
         mv.addObject("token", token);
+        return mv;
+    }
+
+    @GetMapping(path = "/profile")
+    public ModelAndView getProfilePage(){
+        ModelAndView mv = new ModelAndView("web/profile");
+        UserEntity currentUser = userService.getCurrentLoginUser();
+        mv.addObject("user", currentUser);
+        mv.addObject("countryList", countryService.findAll());
+        CityEntity city = cityService.findById(currentUser.getAddress().getCityId());
+        mv.addObject("city", city);
+        return mv;
+    }
+
+    @GetMapping(path = "/change-current-pass")
+    public ModelAndView getChangeCurrentPassPage(){
+        ModelAndView mv = new ModelAndView("web/changeCurrentPass");
+        UserEntity currentUser = userService.getCurrentLoginUser();
+        mv.addObject("user", currentUser);
         return mv;
     }
 }
