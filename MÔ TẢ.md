@@ -1,3 +1,5 @@
+Heelo world !
+
 1, Mô tả về thiết kế hệ thống của project hotelBK:
   - Project sử dụng ngôn ngử lập trình Java và framework Spring (SpringMVC và Spring Boot) để xây dựng hệ thống phía Bakcend.
   - Về phía Frontend, project sử dụng HTML, CSS và ngôn ngữ lập trình Javascript cùng với đó là các thư viện Bootstrap và JQuery
